@@ -46,3 +46,48 @@
 | Content/ThirdPersonBP/Maps/ThirdPersonExampleMap.uasset | World | World | - | - | 0 | - | - | 0 | × |  |
 | Content/ThirdPersonBP/Maps/ThirdPersonExampleMap_BuiltData.uasset | MapBuildDataRegistry | MapBuildDataRegistry | - | - | 0 | - | - | 0 | × |  |
 | Content/ThirdPersonBP/ThirdPersonOverview.uasset | Blueprint | Blueprint Class | - | Blueprint | 0 | - | - | 0 | × | Data-Only Blueprint（ロジックグラフなし） |
+
+## ノードグラフキャプチャ結果
+
+BlueprintUE レンダラを用い、1:1 等倍スケール・1920x1080 解像度でキャプチャを実施した結果。
+大規模グラフはクラスタ分割して撮影。
+
+| 対象アセット | グラフ / クラスタ | ノード数 | 解像度 | ファイルパス | サイズ |
+| --- | --- | --- | --- | --- | --- |
+| ThirdPersonGameMode | UserConstructionScript | 1 | 1920x1080 | `screenshots/ThirdPersonGameMode/UserConstructionScript.png` | 39,295 B |
+| ThirdPersonCharacter | UserConstructionScript | 1 | 1920x1080 | `screenshots/ThirdPersonCharacter/UserConstructionScript.png` | 39,295 B |
+| ThirdPersonCharacter | EventGraph: Gamepad & VR Input | 14 | 1920x1080 | `screenshots/ThirdPersonCharacter/EventGraph_cluster1_gamepad_vr.png` | 150,291 B |
+| ThirdPersonCharacter | EventGraph: Mouse Input | 5 | 1920x1080 | `screenshots/ThirdPersonCharacter/EventGraph_cluster2_mouse.png` | 69,872 B |
+| ThirdPersonCharacter | EventGraph: Movement Input | 10 | 1920x1080 | `screenshots/ThirdPersonCharacter/EventGraph_cluster3_movement.png` | 143,245 B |
+| ThirdPersonCharacter | EventGraph: Jump Input | 4 | 1920x1080 | `screenshots/ThirdPersonCharacter/EventGraph_cluster4_jump.png` | 51,813 B |
+| ThirdPersonCharacter | EventGraph: Touch Input | 7 | 1920x1080 | `screenshots/ThirdPersonCharacter/EventGraph_cluster5_touch.png` | 75,125 B |
+| ThirdPerson_AnimBP | EventGraph: PawnOwner Validation & Set IsInAir | 8 | 1920x1080 | `screenshots/ThirdPerson_AnimBP/EventGraph_part1_isinair.png` | 111,174 B |
+| ThirdPerson_AnimBP | EventGraph: Calculate & Set Speed | 4 | 1920x1080 | `screenshots/ThirdPerson_AnimBP/EventGraph_part2_speed.png` | 63,072 B |
+
+## キャプチャスクリプト利用方法
+
+### 実行スクリプト
+`Script/export_and_capture.py`
+
+### 実行コマンド
+```powershell
+python Script/export_and_capture.py
+```
+
+### 前提条件
+- Google Chrome がインストールされていること（デフォルトパス: `C:\Program Files\Google\Chrome\Application\chrome.exe`）
+- インターネット接続（BlueprintUE の CSS/JS を CDN 経由で取得するため）
+
+## 非描画アセットの技術的制約
+
+BlueprintUE レンダラ (`render.js`) の仕様上、以下のグラフはレンダリング不可:
+
+1. **Material / MaterialFunction (MBP)**
+   - **クラス仕様不一致**: UEのT3Dエクスポートは `MaterialExpression*` だが、BlueprintUE は `MaterialGraphNode*` を前提とする。
+   - **レンダラ未対応**: `MaterialGraphNode` に変換してもピン構造がBlueprintと異なりピン・ワイヤが描画されない。
+   - **MaterialFunction**: BlueprintUE に `MaterialFunctionGraph` の対応クラスが存在しない。
+2. **AnimGraph 内部ステートマシン (StateMachine)**
+   - **例外発生**: `render.js` 内の `NAnimStateTransition.prototype.generateHTML` が `this.pins[0].props` へのアクセスを前提としており、T3Dのピンなし TransitionNode で TypeError が発生し描画停止する。
+   - **構造不一致**: `AnimStateNode` のヘッダー名取得が `BoundGraph` プロパティ依存となっており、Entry ノード以外のステートが描画されない。
+
+
