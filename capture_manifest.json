@@ -1,0 +1,155 @@
+[
+  {
+    "asset": "ThirdPersonGameMode",
+    "graph_id": "UserConstructionScript",
+    "title": "ThirdPersonGameMode - UserConstructionScript",
+    "nodes": [
+      "K2Node_FunctionEntry_19"
+    ],
+    "node_count": 1,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonGameMode\\UserConstructionScript.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonGameMode_UserConstructionScript.png",
+    "size_bytes": 39295
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "UserConstructionScript",
+    "title": "ThirdPersonCharacter - UserConstructionScript",
+    "nodes": [
+      "K2Node_FunctionEntry_19"
+    ],
+    "node_count": 1,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\UserConstructionScript.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_UserConstructionScript.png",
+    "size_bytes": 39295
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "EventGraph_cluster1_gamepad_vr",
+    "title": "ThirdPersonCharacter - EventGraph: Gamepad & VR Input",
+    "nodes": [
+      "K2Node_VariableGet_91",
+      "K2Node_VariableGet_93",
+      "K2Node_CommutativeAssociativeBinaryOperator_155",
+      "K2Node_CommutativeAssociativeBinaryOperator_153",
+      "K2Node_CallFunction_4678",
+      "K2Node_CallFunction_4223",
+      "EdGraphNode_Comment_93",
+      "K2Node_InputAxisEvent_43",
+      "K2Node_InputAxisEvent_55",
+      "K2Node_CallFunction_3716",
+      "K2Node_CallFunction_4184",
+      "K2Node_InputAction_3",
+      "K2Node_CallFunction_79",
+      "EdGraphNode_Comment_1"
+    ],
+    "node_count": 14,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster1_gamepad_vr.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster1_gamepad_vr.png",
+    "size_bytes": 150291
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "EventGraph_cluster2_mouse",
+    "title": "ThirdPersonCharacter - EventGraph: Mouse Input",
+    "nodes": [
+      "K2Node_InputAxisEvent_42",
+      "K2Node_CallFunction_8428",
+      "K2Node_InputAxisEvent_50",
+      "K2Node_CallFunction_8427",
+      "K2Node_Comment_39"
+    ],
+    "node_count": 5,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster2_mouse.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster2_mouse.png",
+    "size_bytes": 69872
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "EventGraph_cluster3_movement",
+    "title": "ThirdPersonCharacter - EventGraph: Movement Input",
+    "nodes": [
+      "K2Node_InputAxisEvent_85",
+      "K2Node_InputAxisEvent_95",
+      "K2Node_CallFunction_7346",
+      "K2Node_CallFunction_7445",
+      "K2Node_CallFunction_8160",
+      "K2Node_CallFunction_8733",
+      "K2Node_CallFunction_8767",
+      "K2Node_Comment_56",
+      "K2Node_CallFunction_20844",
+      "K2Node_CallFunction_21305"
+    ],
+    "node_count": 10,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster3_movement.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster3_movement.png",
+    "size_bytes": 143245
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "EventGraph_cluster4_jump",
+    "title": "ThirdPersonCharacter - EventGraph: Jump Input",
+    "nodes": [
+      "K2Node_Comment_1",
+      "K2Node_CallFunction_1193",
+      "K2Node_InputAction_60",
+      "K2Node_CallFunction_9386"
+    ],
+    "node_count": 4,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster4_jump.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster4_jump.png",
+    "size_bytes": 51813
+  },
+  {
+    "asset": "ThirdPersonCharacter",
+    "graph_id": "EventGraph_cluster5_touch",
+    "title": "ThirdPersonCharacter - EventGraph: Touch Input",
+    "nodes": [
+      "K2Node_InputTouch_3",
+      "K2Node_EnumEquality_7",
+      "K2Node_IfThenElse_19",
+      "K2Node_CallFunction_3334",
+      "EdGraphNode_Comment_42",
+      "K2Node_IfThenElse_18",
+      "K2Node_CallFunction_9755"
+    ],
+    "node_count": 7,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster5_touch.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster5_touch.png",
+    "size_bytes": 75125
+  },
+  {
+    "asset": "ThirdPerson_AnimBP",
+    "graph_id": "EventGraph_part1_isinair",
+    "title": "ThirdPerson_AnimBP - EventGraph: PawnOwner Validation & Set IsInAir",
+    "nodes": [
+      "K2Node_Comment_22",
+      "K2Node_Event_14",
+      "K2Node_CallFunction_11813",
+      "K2Node_MacroInstance_40",
+      "EdGraphNode_Comment_19",
+      "K2Node_CallFunction_2246",
+      "K2Node_CallFunction_2731",
+      "K2Node_VariableSet_64"
+    ],
+    "node_count": 8,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPerson_AnimBP\\EventGraph_part1_isinair.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPerson_AnimBP_EventGraph_part1_isinair.png",
+    "size_bytes": 111174
+  },
+  {
+    "asset": "ThirdPerson_AnimBP",
+    "graph_id": "EventGraph_part2_speed",
+    "title": "ThirdPerson_AnimBP - EventGraph: Calculate & Set Speed",
+    "nodes": [
+      "K2Node_Comment_25",
+      "K2Node_CallFunction_11990",
+      "K2Node_CallFunction_846",
+      "K2Node_VariableSet_24"
+    ],
+    "node_count": 4,
+    "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPerson_AnimBP\\EventGraph_part2_speed.png",
+    "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPerson_AnimBP_EventGraph_part2_speed.png",
+    "size_bytes": 63072
+  }
+]
