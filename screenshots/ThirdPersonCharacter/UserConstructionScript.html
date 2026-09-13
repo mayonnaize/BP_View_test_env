@@ -16,7 +16,7 @@
     <script src="https://blueprintue.com/bue-render/render.js"></script>
     <script>
         window.onload = function() {
-            var code = "Begin Object Class=/Script/BlueprintGraph.K2Node_FunctionEntry Name=\"K2Node_FunctionEntry_19\"\n   NodePosX=0\n   NodePosY=0\n   NodeGuid=00000000000000000000000000000001\n   CustomProperties Pin (PinId=00000000000000000000000000000002,PinName=\"then\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\")\nEnd Object\n";
+            var code = "Begin Object Class=/Script/BlueprintGraph.K2Node_FunctionEntry Name=\"K2Node_FunctionEntry_19\"\n         bEnforceConstCorrectness=False\n         FunctionReference=(MemberParent=\"/Script/CoreUObject.Class'/Script/Engine.Actor'\",MemberName=\"UserConstructionScript\")\n         NodePosX=-128\n         NodePosY=-208\n         NodeGuid=74E04FBF4DABFC3A7E57C09F966C5C77\n         CustomProperties Pin (PinId=754B0EAC4559A5D49B3318A6C6C17A21,PinName=\"then\",Direction=\"EGPD_Output\",PinType.PinCategory=\"exec\",PinType.PinSubCategory=\"\",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)\nEnd Object";
             var playground = document.getElementById('blueprint-render-playground');
             if (window.blueprintUE && window.blueprintUE.render && window.blueprintUE.render.Main) {
                 new window.blueprintUE.render.Main(
