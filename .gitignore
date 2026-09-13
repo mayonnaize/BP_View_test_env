@@ -73,3 +73,10 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Python
+__pycache__/
+*.pyc
+
+# Tool runner script
+run_cmd.ps1
