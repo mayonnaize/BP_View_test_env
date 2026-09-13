@@ -4,12 +4,12 @@
     "graph_id": "UserConstructionScript",
     "title": "ThirdPersonGameMode - UserConstructionScript",
     "nodes": [
-      "K2Node_FunctionEntry_19"
+      "K2Node_FunctionEntry_34"
     ],
     "node_count": 1,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonGameMode\\UserConstructionScript.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonGameMode_UserConstructionScript.png",
-    "size_bytes": 39295
+    "size_bytes": 34830
   },
   {
     "asset": "ThirdPersonCharacter",
@@ -21,7 +21,7 @@
     "node_count": 1,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\UserConstructionScript.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_UserConstructionScript.png",
-    "size_bytes": 39295
+    "size_bytes": 34814
   },
   {
     "asset": "ThirdPersonCharacter",
@@ -46,7 +46,7 @@
     "node_count": 14,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster1_gamepad_vr.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster1_gamepad_vr.png",
-    "size_bytes": 150291
+    "size_bytes": 148839
   },
   {
     "asset": "ThirdPersonCharacter",
@@ -62,7 +62,7 @@
     "node_count": 5,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster2_mouse.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster2_mouse.png",
-    "size_bytes": 69872
+    "size_bytes": 69795
   },
   {
     "asset": "ThirdPersonCharacter",
@@ -83,7 +83,7 @@
     "node_count": 10,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPersonCharacter\\EventGraph_cluster3_movement.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPersonCharacter_EventGraph_cluster3_movement.png",
-    "size_bytes": 143245
+    "size_bytes": 142356
   },
   {
     "asset": "ThirdPersonCharacter",
@@ -135,7 +135,7 @@
     "node_count": 8,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPerson_AnimBP\\EventGraph_part1_isinair.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPerson_AnimBP_EventGraph_part1_isinair.png",
-    "size_bytes": 111174
+    "size_bytes": 107396
   },
   {
     "asset": "ThirdPerson_AnimBP",
@@ -150,6 +150,6 @@
     "node_count": 4,
     "file_path": "C:\\Users\\matoi\\Documents\\Unreal Projects\\BP_View_test_env\\screenshots\\ThirdPerson_AnimBP\\EventGraph_part2_speed.png",
     "artifact_path": "C:\\Users\\matoi\\.gemini\\antigravity\\brain\\c8339c92-b300-42bf-9663-69f45ab79ead\\screenshots\\ThirdPerson_AnimBP_EventGraph_part2_speed.png",
-    "size_bytes": 63072
+    "size_bytes": 62716
   }
 ]
