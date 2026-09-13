@@ -44,3 +44,61 @@
 | Content/ThirdPersonBP/Blueprints/ThirdPersonCharacter.uasset | Blueprint | Blueprint Class | Character | Blueprint | 2 | EventGraph<br>UserConstructionScript | EventGraph<br>ConstructionScript | 41 | ○ |  |
 | Content/ThirdPersonBP/Blueprints/ThirdPersonGameMode.uasset | Blueprint | Blueprint Class | GameModeBase | Blueprint | 1 | UserConstructionScript | ConstructionScript | 1 | ○ |  |
 | Content/ThirdPersonBP/ThirdPersonOverview.uasset | Blueprint | Blueprint Class | EditorTutorial | Blueprint | 0 | - | - | 0 | × | Data-Only Blueprint（ロジックグラフなし） |
+
+## グラフキャプチャ結果
+
+### キャプチャ成果物概要
+- **マニフェスト**: `capture_manifest.json`
+- **保存先ディレクトリ**: `screenshots/{AssetName}/{GraphId}.png`
+- **等倍検証環境**: Chrome Headless (1920x1080) + BlueprintUE レンダラ (`render.js`)
+
+### キャプチャ対象アセットとステータス
+| アセット名 | グラフ / クラスタ | ノード数 | ステータス | 備考 |
+| --- | --- | --- | --- | --- |
+| ThirdPersonGameMode | UserConstructionScript | 1 | 完了 | Zoom 1:1 見切れなし |
+| ThirdPersonCharacter | UserConstructionScript | 1 | 完了 | Zoom 1:1 見切れなし |
+| ThirdPersonCharacter | EventGraph_cluster1_gamepad_vr | 14 | 完了 | Gamepad & VR Input (Zoom 1:1 見切れなし) |
+| ThirdPersonCharacter | EventGraph_cluster2_mouse | 5 | 完了 | Mouse Input (Zoom 1:1 見切れなし) |
+| ThirdPersonCharacter | EventGraph_cluster3_movement | 10 | 完了 | Movement Input (Zoom 1:1 見切れなし) |
+| ThirdPersonCharacter | EventGraph_cluster4_jump | 4 | 完了 | Jump Input (Zoom 1:1 見切れなし) |
+| ThirdPersonCharacter | EventGraph_cluster5_touch | 7 | 完了 | Touch Input (Zoom 1:1 見切れなし) |
+| ThirdPerson_AnimBP | EventGraph_part1_isinair | 8 | 完了 | PawnOwner検証・IsInAir設定 (Zoom 1:1 見切れなし) |
+| ThirdPerson_AnimBP | EventGraph_part2_speed | 4 | 完了 | Speed計算・設定 (Zoom 1:1 見切れなし) |
+| ThirdPerson_AnimBP | AnimGraph | 2 | 非対応 | BlueprintUEがAnimGraphNode未対応 |
+| ThirdPerson_AnimBP | Default (StateMachine) | 9 | 非対応 | TransitionNodeパース時にTypeError発生 |
+| ThirdPerson_AnimBP | State (Idle/Run, Jump* 3種) | 9 | 非対応 | BlendSpacePlayer/SequencePlayer等未対応 |
+| ThirdPerson_AnimBP | Transition (4種) | 11 | 非対応 | TransitionResult等のピン構文不一致 |
+| CubeMaterial | MaterialGraph | 2 | 非対応 | BlueprintUEがT3Dマテリアル構文未対応 |
+| M_Male_Body | MaterialGraph | 12 | 非対応 | BlueprintUEがT3Dマテリアル構文未対応 |
+| RampMaterial | MaterialGraph | 2 | 非対応 | BlueprintUEがT3Dマテリアル構文未対応 |
+| ML_GlossyBlack_Latex_UE4 | MaterialFunctionGraph | 10 | 非対応 | BlueprintUEにMaterialFunction未定義 |
+| ML_Plastic_Shiny_Beige | MaterialFunctionGraph | 5 | 非対応 | BlueprintUEにMaterialFunction未定義 |
+| ML_Plastic_Shiny_Beige_LOGO | MaterialFunctionGraph | 6 | 非対応 | BlueprintUEにMaterialFunction未定義 |
+| ML_SoftMetal_UE4 | MaterialFunctionGraph | 11 | 非対応 | BlueprintUEにMaterialFunction未定義 |
+
+## キャプチャスクリプト利用方法
+
+### 実行スクリプト
+`Script/export_and_capture.py`
+
+### 実行コマンド
+```powershell
+python Script/export_and_capture.py
+```
+
+### 前提条件
+- Google Chrome がインストールされていること（デフォルトパス: `C:\Program Files\Google\Chrome\Application\chrome.exe`）
+- インターネット接続（BlueprintUE の CSS/JS を CDN 経由で取得するため）
+
+## 非描画アセットの技術的制約
+
+BlueprintUE レンダラ (`render.js`) の仕様上、以下のグラフはレンダリング不可:
+
+1. **Material / MaterialFunction (MBP)**
+   - **クラス仕様不一致**: UEのT3Dエクスポートは `MaterialExpression*` だが、BlueprintUE は `MaterialGraphNode*` を前提とする。
+   - **レンダラ未対応**: `MaterialGraphNode` に変換してもピン構造がBlueprintと異なりピン・ワイヤが描画されない。
+   - **MaterialFunction**: BlueprintUE に `MaterialFunctionGraph` の対応クラスが存在しない。
+2. **AnimGraph 内部ステートマシン (StateMachine)**
+   - **例外発生**: `render.js` 内の `NAnimStateTransition.prototype.generateHTML` が `this.pins[0].props` へのアクセスを前提としており、T3Dのピンなし TransitionNode で TypeError が発生し描画停止する。
+   - **構造不一致**: `AnimStateNode` のヘッダー名取得が `BoundGraph` プロパティ依存となっており、Entry ノード以外のステートが描画されない。
+

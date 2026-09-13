@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ThirdPerson_AnimBP - State: JumpLoop</title>
+    <link href="https://blueprintue.com/site.css" rel="stylesheet">
+    <link href="https://blueprintue.com/bue-render/render.css" rel="stylesheet">
+    <style>
+        body, html { margin: 0; padding: 0; width: 1920px; height: 1080px; background: #222; overflow: hidden; }
+        #blueprint-render-playground { width: 1920px; height: 1080px; }
+    </style>
+</head>
+<body>
+    <div id="blueprint-render-playground"></div>
+    <script src="https://blueprintue.com/site.js"></script>
+    <script src="https://blueprintue.com/bue-render/render.js"></script>
+    <script>
+        window.onload = function() {
+            var code = "      Begin Object Name=\"AnimGraphNode_StateResult_16\"\n      End Object\n\n      Begin Object Name=\"AnimGraphNode_SequencePlayer_40\"\n      End Object";
+            var playground = document.getElementById('blueprint-render-playground');
+            if (window.blueprintUE && window.blueprintUE.render && window.blueprintUE.render.Main) {
+                new window.blueprintUE.render.Main(
+                    code,
+                    playground,
+                    {height: "1080px", width: "1920px"}
+                ).start();
+            }
+        };
+    </script>
+</body>
+</html>
