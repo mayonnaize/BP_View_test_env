@@ -1,7 +1,8 @@
 import os
+import re
 import unreal
 
-# プロジェクトルートのREADME.mdを出力先として指定
+# プロジェクトルートのREADME.md出力先指定
 OUTPUT = os.path.join(
     unreal.Paths.project_dir(),
     "README.md"
@@ -25,7 +26,7 @@ def asset_to_filename(asset_path):
 
 
 def get_tags(asset_path):
-    # TagValueマップのキーと値を文字列に変換
+    # TagValueマップキー値文字列変換
     tag_map = unreal.EditorAssetLibrary.get_tag_values(asset_path)
     return {str(k): str(v) for k, v in tag_map.items()}
 
@@ -78,6 +79,58 @@ def get_asset_type(asset, tags):
     return asset_class
 
 
+# UE Python API制約: UBlueprint.FunctionGraphs / UberGraphPages等はprotectedのため直接読み取り不可
+# EdGraphNodeからOuter階層とノード構成を走査してユーザー編集対象グラフを判定
+
+INTERNAL_NAME_PATTERNS = [
+    re.compile(r"^ExecuteUbergraph_"),
+    re.compile(r"^EvaluateGraphExposedInputs_"),
+    re.compile(r"^EdGraph(_\d+)?$"),
+    re.compile(r".*__AnimFunc$"),
+    re.compile(r".*_MERGED$"),
+    re.compile(r"^Inp(Axis|Act|Tch|Key|Gesture|Motion)Evt_"),
+]
+
+
+def is_user_editable_graph(graph_name, graph_class, graph_path, node_classes):
+    # 所有関係判定: ExecuteUbergraph配下の複製グラフを除外
+    if ":ExecuteUbergraph" in graph_path:
+        return False
+
+    # コンパイラ内部ノード判定: 永続フレーム変数設定ノードを含むイベントスタブを除外
+    if "K2Node_SetVariableOnPersistentFrame" in node_classes:
+        return False
+
+    # コンパイラ自動生成グラフ名の除外
+    for pattern in INTERNAL_NAME_PATTERNS:
+        if pattern.match(graph_name):
+            return False
+
+    # アニメーション系グラフクラスの判定
+    anim_classes = (
+        "AnimationStateMachineGraph",
+        "AnimationTransitionGraph",
+        "AnimationStateGraph",
+        "AnimationGraph",
+    )
+    if any(c in graph_class for c in anim_classes):
+        return True
+
+    # 標準ルートグラフの判定
+    if graph_name in ("EventGraph", "UserConstructionScript"):
+        return True
+
+    # ユーザー定義Function判定
+    if "K2Node_FunctionEntry" in node_classes:
+        return True
+
+    # ユーザー定義Macro判定
+    if "K2Node_Tunnel" in node_classes:
+        return True
+
+    return False
+
+
 def classify_blueprint_graph(graph_name, graph_class, node_classes):
     if "AnimationStateMachineGraph" in graph_class:
         return "StateMachine"
@@ -106,7 +159,7 @@ def classify_blueprint_graph(graph_name, graph_class, node_classes):
     return graph_class
 
 
-# 全アセットのロード処理（同一ファイルに対する重複エントリを除外）
+# 全アセットロード処理（同一ファイル重複エントリ除外）
 assets = []
 seen_files = set()
 asset_paths = unreal.EditorAssetLibrary.list_assets(
@@ -125,7 +178,7 @@ for asset_path in asset_paths:
         assets.append((asset_path, asset))
 
 
-# メモリ上のEdGraphNodeから各Blueprintのグラフ情報をインデックス化
+# EdGraphNodeからBlueprintグラフ情報インデックス化
 graph_index = {}
 
 for node in unreal.ObjectIterator(unreal.EdGraphNode):
@@ -146,6 +199,7 @@ for node in unreal.ObjectIterator(unreal.EdGraphNode):
         {
             "name": graph.get_name(),
             "class": graph.get_class().get_name(),
+            "path": graph_path,
             "node_classes": set(),
             "node_count": 0,
         }
@@ -155,7 +209,7 @@ for node in unreal.ObjectIterator(unreal.EdGraphNode):
     info["node_count"] += 1
 
 
-# レポート行データの生成
+# レポート行データ生成
 rows = []
 
 for asset_path, asset in assets:
@@ -176,7 +230,16 @@ for asset_path, asset in assets:
         graph_family = "Blueprint"
         parent_class = get_parent_class(tags)
 
-        graphs = list(graph_index.get(asset.get_path_name(), {}).values())
+        all_graphs = list(graph_index.get(asset.get_path_name(), {}).values())
+        graphs = [
+            g for g in all_graphs
+            if is_user_editable_graph(
+                g["name"],
+                g["class"],
+                g["path"],
+                g["node_classes"]
+            )
+        ]
         for graph in graphs:
             graph_names.append(graph["name"])
             graph_types.append(
@@ -228,7 +291,7 @@ for asset_path, asset in assets:
     ])
 
 
-# Markdownテーブルの書き込み
+# Markdownテーブル出力
 headers = [
     "ファイル名",
     "アセットクラス",
